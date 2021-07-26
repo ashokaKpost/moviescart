@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
+const { Navs } = require('./routes/_nav');
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = (props) => {
+     return (
+          <React.Fragment>
+               <Header />
+               <Router>
+                    <React.Suspense fallback={<div>Loading...</div>}>
+                         {Navs.map((x, i) => (
+                              <Route
+                                   key={i}
+                                   path={x.path}
+                                   exact={x.exact}
+                                   component={x.component}
+                                   render={() => (x.path === '/' ? <Redirect to={'/moviecart'} /> : null)}
+                              />
+                         ))}
+                    </React.Suspense>
+               </Router>
+          </React.Fragment>
+     );
+};
 
 export default App;

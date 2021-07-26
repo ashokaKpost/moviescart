@@ -1,0 +1,15 @@
+.description {
+    position: absolute;
+    bottom: 0px;
+    width: '100%';
+    height: '30%';
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #000;
+    opacity: 0.8;
+    color: #fff;
+    padding: 10px;
+    font-size: 12px;
+}
